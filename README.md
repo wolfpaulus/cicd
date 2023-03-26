@@ -1,6 +1,7 @@
 # ERAU CS 399 
 ## CI/CD
 ### Status ..
+[![run-tests](./actions/workflows/python-test.yml/badge.svg)](./actions/workflows/python-test.yml)
 
 CI is a software development practice in which incremental code changes are made frequently and reliably. 
 Automated build-and-test steps triggered by CI ensure that code changes being merged into the repository are reliable. 
