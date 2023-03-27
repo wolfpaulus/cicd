@@ -20,7 +20,7 @@ on:
     types:
       - completed
 env:
-  REGISTRY: ghcr.io # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io # GitHub Container Registry
   IMAGE_NAME: ${{ github.repository }} # github.repository as <account>/<repo>
 
 jobs:
@@ -32,7 +32,7 @@ jobs:
           echo "REGISTRY=ghcr.io" >> $GITHUB_ENV
           echo "IMAGE_NAME=${{ github.repository }}" >> $GITHUB_ENV
       - name: Checkout the repo
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
         with:
