@@ -28,13 +28,8 @@ env:
 jobs:
   publish-docker-image:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
     steps:
       - name: Set environment variable
-        id: step_one
         run: |
           echo "REGISTRY=ghcr.io" >> $GITHUB_ENV
           echo "IMAGE_NAME=${{ github.repository }}" >> $GITHUB_ENV
