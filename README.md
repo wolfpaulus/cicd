@@ -50,18 +50,11 @@ Open Tokens **(classic)**
     
   Copy your personal access token now. You won’t be able to see it again!
 
-### GitHub Secrets
+### Workflow permissions
 Still on the github website, navigate to "Your repositories". This time open the forked ```cicd``` repo's settings,
 (not your account settings.)
-- Under Security, open Secrets and variables
-  - Actions
-    - Secret
-      - Click "New repository secret"
-        - Add a new secret
-          - Name: **REPO_GHA_PAT**
-          - Value: <your_personal_access_token>
-            - Click Add secret  
-
+Under Actions, click on General, scroll down to "Workflow permission" and select "Read and write permissions".
+This is necessary to allow the workflows to push the docker image to the github container registry.
 
 # Pull the repo to your local machine
 Open PyCharm, if it opens an existing project, close the project.
