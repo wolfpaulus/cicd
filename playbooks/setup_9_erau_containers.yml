@@ -1,0 +1,18 @@
+# Install student container : ansible-playbook -i ./hosts.yaml ./setup_9_erau_containers.yml
+# Container is hosted on GitHub Container Registry with a public image at ghcr.io/wolf-edu/cicd:latest
+# Container will be published on port 8099 on the host and port 8080 in the container and
+# will be publicly available at https://erau99.techasitaproductions.com
+# Watchtower will update the container when a new image is pushed to the registry
+- hosts: all
+  become: "yes"
+  tasks:
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
+        name: erau99
+        image: ghcr.io/wolf-edu/cicd:latest
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8099:8080"

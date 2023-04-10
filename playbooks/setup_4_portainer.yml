@@ -1,0 +1,19 @@
+# install portainer : ansible-playbook -i ./hosts.yaml ./setup_4_portainer.yml
+
+- hosts: all
+  become: "yes"
+  tasks:
+    - name: Install Portainer
+      docker_container:
+        name: portainer
+        image: portainer/portainer-ce
+        labels:
+          com.centurylinklabs.watchtower.enable: "false"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+            - "9000:9000"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - /portainer_data:/data
+

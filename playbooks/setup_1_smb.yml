@@ -1,0 +1,24 @@
+# mount samba share on playbooks : ansible-playbook -i ./hosts.yaml ./setup_1_smb.yml
+
+- hosts: all
+  become: "yes"
+  vars:
+    file_server: "{{ smb_server }}"
+    credentials_file: /media/.smbcredentials
+  tasks:
+    - name: Create the credentials file for samba.
+      copy:
+        dest: "{{ credentials_file }}"
+        content: |
+          username={{ smb_user }}
+          password={{ smb_password }}
+
+    - name: Ensure packages are installed
+      apt:
+        name: cifs-utils
+        state: present
+
+    - name: add line to fstab for smb share
+      lineinfile:
+        path: /etc/fstab
+        line: "//{{file_server}}/media /media/external/samba cifs credentials={{credentials_file}},iocharset=utf8,gid=1000,uid=1000,file_mode=0777,dir_mode=0777 0 0"

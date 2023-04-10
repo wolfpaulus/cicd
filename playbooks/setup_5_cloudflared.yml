@@ -1,0 +1,105 @@
+# install cloudflared : ansible-playbook -i ./hosts.yaml ./setup_5_cloudflared.yml
+# mapping hostnames to ports. E.g. https://erau01.techcasitaproductions.com -> localhost:8001
+- hosts: all
+  become: yes
+  tasks:
+    - name: Download the cloudflared Linux package.
+      shell: wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+    - name: Depackage cloudflared.
+      shell: sudo dpkg -i cloudflared-linux-amd64.deb
+
+    - name: Create a cloudflared service directory.
+      shell: mkdir -p /etc/cloudflared/
+
+    - name: Create the config file for cloudflared and define the ingress rules for the tunnel.
+      copy:
+        dest: "/etc/cloudflared/config.yml"
+        content: |
+          tunnel: {{ tunnel_id }}
+          credentials-file: /etc/cloudflared/cred.json
+          logfile: /var/log/cloudflared.log
+          loglevel: warn
+          ingress:  # ingress rules for the tunnel
+            - hostname: {{ hostname }} 
+              service: http://localhost:9000
+            - hostname: ssh-{{ hostname }}
+              service: ssh://localhost:22 # must be proxied using cloudflared on the client
+            - hostname: erau01.techcasitaproductions.com
+              service: http://localhost:8001
+            - hostname: erau02.techcasitaproductions.com
+              service: http://localhost:8002
+            - hostname: erau03.techcasitaproductions.com
+              service: http://localhost:8003
+            - hostname: erau04.techcasitaproductions.com
+              service: http://localhost:8004
+            - hostname: erau05.techcasitaproductions.com
+              service: http://localhost:8005
+            - hostname: erau06.techcasitaproductions.com
+              service: http://localhost:8006
+            - hostname: erau07.techcasitaproductions.com
+              service: http://localhost:8007
+            - hostname: erau08.techcasitaproductions.com
+              service: http://localhost:8008
+            - hostname: erau09.techcasitaproductions.com
+              service: http://localhost:8009
+            - hostname: erau10.techcasitaproductions.com
+              service: http://localhost:8010
+            - hostname: erau11.techcasitaproductions.com
+              service: http://localhost:8011
+            - hostname: erau12.techcasitaproductions.com
+              service: http://localhost:8012
+            - hostname: erau13.techcasitaproductions.com
+              service: http://localhost:8013
+            - hostname: erau99.techcasitaproductions.com
+              service: http://localhost:8099             
+            - service: http_status:404
+
+    - name: Create the certificate file for cloudflared.
+      ansible.builtin.copy:
+        src: "{{ tunnel_cert }}"
+        dest: "/etc/cloudflared/cert.pem"
+
+    - name: Create the credentials file for cloudflared.
+      copy:
+        dest: "/etc/cloudflared/cred.json"
+        content: |
+          {
+            "AccountTag"   : "{{ account_tag | quote }}",
+            "TunnelID"     : "{{ tunnel_id | quote }}",
+            "TunnelName"   : "{{ tunnel_name | quote }}",
+            "TunnelSecret" : "{{ tunnel_secret | quote }}"
+          }
+
+    - name: Install the tunnel as a systemd service.
+      block:
+        - name: Install the tunnel as a systemd service.
+          shell: cloudflared service install
+      rescue:
+        - name: Print when errors
+          ansible.builtin.debug:
+            msg: 'service installation failed, already installed?'
+
+    - name: Create CNAMES for the tunnel.
+      block:
+        - name: Create CNAMES for the tunnel.
+          shell: |
+            cloudflared tunnel route dns "{{ tunnel_id }}" beta
+            cloudflared tunnel route dns "{{ tunnel_id }}" ssh-beta
+
+      rescue:
+        - name: Print when errors
+          ansible.builtin.debug:
+            msg: 'dns route creation failed, already created?'
+
+    - name: Increase the maximum receive buffer size.
+      ansible.posix.sysctl:
+        name: net.core.rmem_max
+        value: 2500000
+        state: present
+        reload: yes
+
+    - name: Start the tunnel.
+      ansible.builtin.service:
+        name: cloudflared
+        state: restarted
+

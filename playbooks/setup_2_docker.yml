@@ -1,0 +1,40 @@
+# install docker : ansible-playbook -i ./hosts.yaml ./setup_2_docker.yml
+
+- hosts: all
+  become: "yes"
+  vars:
+    packages:
+      - nano
+      - wget
+      - htop
+      - docker.io
+  tasks:
+    - name: Ensure packages are installed
+      apt:
+        name: "{{ packages }}"
+        state: present
+
+    - name: Add user to docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Create config.json
+      copy:
+        dest: /etc/docker/config.json
+        content: |
+          {
+            "auths": {
+              "ghcr.io": { "auth": "{{ghcr_auth}}" },
+              "https://index.docker.io/v1": { "auth": "{{docker_auth}}" },
+              "https://index.docker.io/v2": { "auth": "{{docker_auth}}" },
+              "hub.docker.com": { "auth": "{{docker_auth}}" }
+            }
+          }

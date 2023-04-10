@@ -1,0 +1,28 @@
+# dns routes for CS399 student containers : ansible-playbook -i ./hosts.yaml ./setup_8_erau_cnames.yml
+
+- hosts: beta
+  become: yes
+  tasks:
+    - name: Create CNAMES for the tunnel.
+      block:
+        - name: Create CNAMES for the tunnel. # put newest first
+          shell: |
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau99
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau13
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau12
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau11
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau10
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau09
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau08
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau07
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau06
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau05
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau04
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau03
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau02
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau01
+      rescue:
+        - name: Print when errors
+          ansible.builtin.debug:
+            msg: 'dns route creation failed, already created?'
+

@@ -32,6 +32,17 @@ You can do this by clicking on the "Fork" button in the upper right corner of th
 Keep the Repo name as is, i.e. ```cicd```, and copy the main branch to your own repo. I.e., click on the green 
 "Create fork" button.
 
+### GitHub Actions
+Open the Actions tab in your forked repo.
+Click the green button to enable workflows in your forked repo.
+
+### Workflow permissions
+Still on the github website, open the forked ```cicd``` repo's settings,
+(not your account settings.)
+Under Actions, click on General, scroll down to "Workflow permission" and select "Read and write permissions".
+This is necessary to allow the workflows to push the docker image to the github container registry.
+Click on "Save".
+
 ### PAT (Personal Access Token)
 Open your account settings (not this repo's settings). 
 Open Developer settings (bottom of the left menu).
@@ -50,11 +61,6 @@ Open Tokens **(classic)**
     
   Copy your personal access token now. You won’t be able to see it again!
 
-### Workflow permissions
-Still on the github website, navigate to "Your repositories". This time open the forked ```cicd``` repo's settings,
-(not your account settings.)
-Under Actions, click on General, scroll down to "Workflow permission" and select "Read and write permissions".
-This is necessary to allow the workflows to push the docker image to the github container registry.
 
 # Pull the repo to your local machine
 Open PyCharm, if it opens an existing project, close the project.
