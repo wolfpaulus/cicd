@@ -1,0 +1,9 @@
+# US/Arizona is the default timezone for hosts : ansible-playbook -i ./hosts.yaml ./setup_0_tz.yml
+- hosts: all
+  become: "yes"
+  vars:
+    tz: US/Arizona
+  tasks:
+  - name: Set timezone
+    timezone:
+      name: "{{ tz }}"
