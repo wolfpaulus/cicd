@@ -27,10 +27,10 @@ jobs:
   publish-docker-image:
     runs-on: ubuntu-latest
     steps:
-      - name: Set environment variable
+      - name: Setting environment variables and converting IMAGE_NAME to lowercase
         run: |
-          echo "REGISTRY=ghcr.io" >> $GITHUB_ENV
-          echo "IMAGE_NAME=${{ github.repository }}" >> $GITHUB_ENV
+          echo "REGISTRY=${REGISTRY}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=${IMAGE_NAME,,}" >> $GITHUB_ENV
       - name: Checkout the repo
         uses: actions/checkout@v3
       - name: Login to GitHub Container Registry
