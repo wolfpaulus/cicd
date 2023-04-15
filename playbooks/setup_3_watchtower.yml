@@ -33,5 +33,6 @@
           WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER: "{{ mail_user }}"
           WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: "{{ mail_password }}"
           WATCHTOWER_NOTIFICATION_EMAIL_DELAY: "3"
+          WATCHTOWER_NOTIFICATION_TEMPLATE: "{{range .}}{{.Time.Format \"2006-01-02 15:04:05\"}} ({{.Level}}): {{.Message}}{{println}}{{end}}"
           #REPO_USER: "{{ghcr_user}}"
           #REPO_PASS: "{{ghcr_token}}"

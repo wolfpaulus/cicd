@@ -8,6 +8,17 @@
   tasks:
     - name: Install public Docker Container from GitHub Container Registry
       docker_container:
+        name: erau01
+        image: ghcr.io/autumnpeterson24/cicd:latest
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8001:8080"
+
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
         name: erau99
         image: ghcr.io/wolf-edu/cicd:latest
         labels:
@@ -16,3 +27,5 @@
         restart_policy: unless-stopped
         published_ports:
           - "8099:8080"
+
+
