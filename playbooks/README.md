@@ -2,7 +2,8 @@
 ![Ansible](https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible_Logo.png)
 
 This directory contains Ansible playbooks for deploying and managing containers platform.
-
+* Setting the Timezone
+  * setup_0_timezone.yml - Sets the timezone to America/Arizona
 * Accessing Network Attached Storage (NAS)
   * setup_1_smb.yml - Installs cifs-utils and configures Samba server access
 * Docker

@@ -129,7 +129,7 @@ Open a terminal, navigate to the project directory (```./cicd```) and run the fo
 
 ```python3 ./src/ws.py```
 
-Now open a browser and navigate to http://localhost:8000/ and enter a number to see if it is odd or even.
+Now open a browser and navigate to http://localhost:8080/ and enter a number to see if it is odd or even.
 
 ## Running the application in a container locally
 To run the application in a container, you need to have docker installed.
