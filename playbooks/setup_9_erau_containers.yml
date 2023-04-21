@@ -5,7 +5,97 @@
 # Watchtower will update the container when a new image is pushed to the registry
 - hosts: beta
   become: "yes"
-  tasks:
+  tasks: #
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
+        name: erau11
+        image: ghcr.io/teaganlaws/cicd:latest
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8011:8080"
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
+        name: erau10
+        image: ghcr.io/uhlers/cicd:latest
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8010:8080"
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
+        name: erau09
+        image: ghcr.io/cjspencer2022/cicd:latest
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8009:8080"
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
+        name: erau08
+        image: ghcr.io/woramonp/cicd:latest
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8008:8080"
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
+        name: erau07
+        image: ghcr.io/jordantw2014/cicd:latest
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8007:8080"
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
+        name: erau06
+        image: ghcr.io/jaxsonmitchell/cicd:latest
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8006:8080"
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
+        name: erau05
+        image: ghcr.io/steelstarling/cicd:latest
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8005:8080"
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
+        name: erau04
+        image: ghcr.io/nivlac3213/cicd:latest
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8004:8080"
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
+        name: erau03
+        image: ghcr.io/marcellonovak/cicd_cs399:latest
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8003:8080"
     - name: Install public Docker Container from GitHub Container Registry
       docker_container:
         name: erau02
@@ -16,7 +106,6 @@
         restart_policy: unless-stopped
         published_ports:
           - "8002:8080"
-
     - name: Install public Docker Container from GitHub Container Registry
       docker_container:
         name: erau01
@@ -27,7 +116,6 @@
         restart_policy: unless-stopped
         published_ports:
           - "8001:8080"
-
     - name: Install public Docker Container from GitHub Container Registry
       docker_container:
         name: erau99

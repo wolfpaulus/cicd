@@ -1,0 +1,12 @@
+# Mount CD Rom: ansible-playbook -i ./hosts.yaml ./setup_o_cdrom.yml
+
+- hosts: alpha
+  become: "yes"
+  tasks:
+    - name: mount cdrom
+      ansible.posix.mount:
+        path: /mnt/dvd
+        src: /dev/sr0
+        fstype: iso9660
+        opts: ro,noauto
+        state: present
