@@ -5,6 +5,10 @@
   vars:
     file_server: "{{ smb_server }}"
     credentials_file: /media/.smbcredentials
+    packages:
+      - cifs-utils    # mount samba share
+      - avahi-daemon  # local dns
+      - iputils-ping  # ping
   tasks:
     - name: Create the credentials file for samba.
       copy:
@@ -15,7 +19,7 @@
 
     - name: Ensure packages are installed
       apt:
-        name: cifs-utils
+        name: "{{ packages }}"
         state: present
 
     - name: add line to fstab for smb share
