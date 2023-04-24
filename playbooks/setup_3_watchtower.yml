@@ -1,9 +1,9 @@
 # install watchtower : ansible-playbook -i ./hosts.yaml ./setup_3_watchtower.yml
 
-- hosts: all
+- hosts: beta
   become: "yes"
   vars:
-    poll_interval: 120
+    poll_interval: 600
   tasks:
     - name: Install Watchtower
       docker_container:
@@ -23,8 +23,10 @@
           WATCHTOWER_CLEANUP: "true"
           WATCHTOWER_INCLUDE_STOPPED: "true"
           WATCHTOWER_INCLUDE_RESTARTING: "true"
+          WATCHTOWER_WARN_ON_HEAD_FAILURE: "never"
           WATCHTOWER_LABEL_ENABLE: "1" # monitor containers with the enable label set to true
           WATCHTOWER_NOTIFICATIONS: "shoutrrr email"
+          WATCHTOWER_NOTIFICATION_DELAY: "600"
           WATCHTOWER_NOTIFICATION_URL: "discord://{{discord_webhook_token}}@{{discord_webhook_id}}"
           WATCHTOWER_NOTIFICATION_EMAIL_FROM: "{{ mail_user }}"
           WATCHTOWER_NOTIFICATION_EMAIL_TO: "{{ mail_recipient }}"
@@ -32,7 +34,7 @@
           WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT: "587"
           WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER: "{{ mail_user }}"
           WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: "{{ mail_password }}"
-          WATCHTOWER_NOTIFICATION_EMAIL_DELAY: "3"
-          WATCHTOWER_NOTIFICATION_TEMPLATE: "{{range .}}{{.Time.Format \"2006-01-02 15:04:05\"}} ({{.Level}}): {{.Message}}{{println}}{{end}}"
+          WATCHTOWER_NOTIFICATION_EMAIL_DELAY: "600"
+          #WATCHTOWER_NOTIFICATION_TEMPLATE: "{{range .}}{{.Time.Format \"2006-01-02 15:04:05\"}} ({{.Level}}): {{.Message}}{{println}}{{end}}"
           #REPO_USER: "{{ghcr_user}}"
           #REPO_PASS: "{{ghcr_token}}"
