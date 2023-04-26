@@ -8,6 +8,16 @@
   tasks: #
     - name: Install public Docker Container from GitHub Container Registry
       docker_container:
+        name: erau12
+        image: ghcr.io/willtreaty420697/cicd:odd-even
+        labels:
+          com.centurylinklabs.watchtower.enable: "true"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8012:8080"
+    - name: Install public Docker Container from GitHub Container Registry
+      docker_container:
         name: erau11
         image: ghcr.io/teaganlaws/cicd:latest
         labels:
