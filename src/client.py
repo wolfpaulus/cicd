@@ -7,25 +7,33 @@ Author: Wolf Paulus (https://wolfpaulus.com)
 import urllib.request
 import json
 
-server_url = "http://localhost:8080"  # change this to the URL of your WebService
+server_url = "https://erau01.techcasitaproductions.com"  # change this to the URL of your WebService
 service_url = f"{server_url}/?number="
 health_url = f"{server_url}/health"
 
 
 def get_health() -> bool:
-    with urllib.request.urlopen(health_url) as response:
+    print(f"Checking {health_url}")
+    req = urllib.request.Request(health_url, headers={'User-Agent': 'Mozilla/5.0'})
+    with urllib.request.urlopen(req) as response:
         return response.status == 200
 
 
-def remote_is_odd(number: int) -> bool:
+def remote_json_check(number: int) -> str:
     url = f"{service_url}{number}"
-    req = urllib.request.Request(url, headers={'Content-Type': 'application/json'})
+    print(f"Checking {url}")
+    req = urllib.request.Request(url, headers= {
+        'User-Agent': 'Mozilla/5.0',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'})
     with urllib.request.urlopen(req) as response:
+        if response.status != 200:
+            raise Exception(f"Error: {response.status}")
         my_dict = json.loads(response.read().decode('utf-8'))
-        return my_dict['odd']
+        return str(my_dict)
 
 
 if __name__ == "__main__":
     if get_health():
-        for i in range(10):
-            print(f"{i} is odd: {remote_is_odd(i)}")
+        for i in range(7,10):
+            print(f"{i} is odd: {remote_json_check(i)}")
