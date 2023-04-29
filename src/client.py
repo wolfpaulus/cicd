@@ -7,7 +7,7 @@ Author: Wolf Paulus (https://wolfpaulus.com)
 import urllib.request
 import json
 
-server_url = "https://erau01.techcasitaproductions.com"  # change this to the URL of your WebService
+server_url = "http://localhost:8080"  # change this to the URL of your WebService
 service_url = f"{server_url}/?number="
 health_url = f"{server_url}/health"
 
@@ -24,7 +24,6 @@ def remote_json_check(number: int) -> str:
     print(f"Checking {url}")
     req = urllib.request.Request(url, headers= {
         'User-Agent': 'Mozilla/5.0',
-        'Content-Type': 'application/json',
         'Accept': 'application/json'})
     with urllib.request.urlopen(req) as response:
         if response.status != 200:
