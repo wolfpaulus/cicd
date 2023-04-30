@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Taylor Hancock",
+    "project": "Correctness Checker",
+    "github": "https://github.com/steelstarling/cicd",
+    "docker": "https://github.com/SteelStarling/cicd/pkgs/container/cicd",
+    "server": "https://erau05.techcasitaproductions.com/"
+  },
+  {
+    "name": "Calvin Henggeler",
+    "project": "Calvin Checker",
+    "github": "https://github.com/nivlac3213/cicd",
+    "docker": "https://github.com/Nivlac3213/cicd/pkgs/container/cicd",
+    "server": "https://erau04.techcasitaproductions.com/"
+  },
+  {
+    "name": "Teagan Laws",
+    "project": "Odd/Even Checker",
+    "github": "https://github.com/teaganlaws/cicd",
+    "docker": "https://github.com/teaganlaws/cicd/pkgs/container/cicd",
+    "server": "https://erau11.techcasitaproductions.com/"
+  },
+  {
+    "name": "Jaxson Mitchell",
+    "project": "Prime/Composite Checker",
+    "github": "https://github.com/jaxsonmitchell/cicd",
+    "docker": "https://github.com/JaxsonMitchell/cicd/pkgs/container/cicd",
+    "server": "https://erau06.techcasitaproductions.com/"
+  },
+  {
+    "name": "Marcello Novak",
+    "project": "Prime Checker",
+    "github": "https://github.com/marcellonovak/cicd_CS399/",
+    "docker": "https://github.com/marcellonovak/cicd-CS399/pkgs/container/cicd-cs399",
+    "server": "https://erau03.techcasitaproductions.com/"
+  },
+  {
+    "name": "Autumn Peterson",
+    "project": "Multiple of 10 Checker",
+    "github": "https://github.com/autumnpeterson24/cicd",
+    "docker": "https://github.com/autumnpeterson24/cicd/pkgs/container/cicd",
+    "server": "https://erau01.techcasitaproductions.com/"
+  },
+  {
+    "name": "Tri Phan",
+    "project": "Odd/Even Checker",
+    "github": "https://github.com/WillTreaty420697/cicd",
+    "docker": "https://github.com/WillTreaty420697/cicd/pkgs/container/cicd",
+    "server": "https://erau12.techcasitaproductions.com/"
+  },
+  {
+    "name": "Woramon Prawatmuang",
+    "project": "Multiply by 2 Checker",
+    "github": "https://github.com/woramonp/cicd",
+    "docker": "https://github.com/WoramonP/cicd/pkgs/container/cicd",
+    "server": "https://erau08.techcasitaproductions.com/"
+  },
+  {
+    "name": "Molly Ruley",
+    "project": "Perfect Square Checker",
+    "github": "https://github.com/ruleym/cicd",
+    "docker": "https://github.com/ruleym/cicd/pkgs/container/cicd",
+    "server": "https://erau02.techcasitaproductions.com/"
+  },
+  {
+    "name": "Charles Spencer",
+    "project": "Dice Simulator",
+    "github": "https://github.com/cjspencer2022/cicd",
+    "docker": "https://github.com/cjspencer2022/cicd/pkgs/container/cicd",
+    "server": "https://erau09.techcasitaproductions.com/"
+  },
+  {
+    "name": "Skyler Uhler",
+    "project": "Divisible by 3 Checker",
+    "github": "https://github.com/UhlerS/cicd",
+    "docker": "https://github.com/UhlerS/cicd/pkgs/container/cicd",
+    "server": "https://erau10.techcasitaproductions.com/"
+  },
+  {
+    "name": "Jordan Wallschlaeger",
+    "project": "Odd/Even Checker",
+    "github": "https://github.com/jordantw2014/cicd",
+    "docker": "https://github.com/jordantw2014/cicd/pkgs/container/cicd",
+    "server": "https://erau07.techcasitaproductions.com/"
+  }
+]

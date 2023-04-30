@@ -99,7 +99,7 @@
     - name: Install public Docker Container from GitHub Container Registry
       docker_container:
         name: erau03
-        image: ghcr.io/marcellonovak/cicd_cs399:latest
+        image: ghcr.io/marcellonovak/cicd-cs399:latest
         labels:
           com.centurylinklabs.watchtower.enable: "true"
         state: started

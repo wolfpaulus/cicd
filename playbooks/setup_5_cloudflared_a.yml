@@ -1,6 +1,6 @@
-# install cloudflared : ansible-playbook -i ./hosts.yaml ./setup_5_cloudflared.yml
+# install cloudflared : ansible-playbook -i ./hosts.yaml ./setup_5_cloudflared_a.yml
 # mapping hostnames to ports. E.g. https://erau01.techcasitaproductions.com -> localhost:8001
-- hosts: beta
+- hosts: alpha
   become: yes
   tasks:
     - name: Download the cloudflared Linux package.
@@ -21,39 +21,7 @@
           loglevel: warn
           ingress:  # ingress rules for the tunnel
             - hostname: {{ hostname }} 
-              service: http://localhost:9000 # portainer 9000 -> 443
-            - hostname: ssh-{{ hostname }}
-              service: ssh://localhost:22 # must be proxied using cloudflared on the client
-            - hostname: erau.techcasitaproductions.com
-              service: http://localhost:8100           
-            - hostname: erau01.techcasitaproductions.com
-              service: http://localhost:8001
-            - hostname: erau02.techcasitaproductions.com
-              service: http://localhost:8002
-            - hostname: erau03.techcasitaproductions.com
-              service: http://localhost:8003
-            - hostname: erau04.techcasitaproductions.com
-              service: http://localhost:8004
-            - hostname: erau05.techcasitaproductions.com
-              service: http://localhost:8005
-            - hostname: erau06.techcasitaproductions.com
-              service: http://localhost:8006
-            - hostname: erau07.techcasitaproductions.com
-              service: http://localhost:8007
-            - hostname: erau08.techcasitaproductions.com
-              service: http://localhost:8008
-            - hostname: erau09.techcasitaproductions.com
-              service: http://localhost:8009
-            - hostname: erau10.techcasitaproductions.com
-              service: http://localhost:8010
-            - hostname: erau11.techcasitaproductions.com
-              service: http://localhost:8011
-            - hostname: erau12.techcasitaproductions.com
-              service: http://localhost:8012
-            - hostname: erau13.techcasitaproductions.com
-              service: http://localhost:8013
-            - hostname: erau99.techcasitaproductions.com
-              service: http://localhost:8099        
+              service: http://localhost:8000 # sedona server 8000 -> 443
             - service: http_status:404
 
     - name: Create the certificate file for cloudflared.
@@ -85,8 +53,7 @@
       block:
         - name: Create CNAMES for the tunnel.
           shell: |
-            cloudflared tunnel route dns "{{ tunnel_id }}" beta
-            cloudflared tunnel route dns "{{ tunnel_id }}" ssh-beta
+            cloudflared tunnel route dns "{{ tunnel_id }}" alpha
 
       rescue:
         - name: Print when errors

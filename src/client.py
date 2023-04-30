@@ -8,6 +8,7 @@ import urllib.request
 import json
 
 server_url = "http://localhost:8080"  # change this to the URL of your WebService
+server_url ="https://erau08.techcasitaproductions.com/"
 service_url = f"{server_url}/?number="
 health_url = f"{server_url}/health"
 
@@ -28,6 +29,7 @@ def remote_json_check(number: int) -> str:
     with urllib.request.urlopen(req) as response:
         if response.status != 200:
             raise Exception(f"Error: {response.status}")
+        #print(response.read().decode('utf-8'))
         my_dict = json.loads(response.read().decode('utf-8'))
         return str(my_dict)
 

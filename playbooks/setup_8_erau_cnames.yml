@@ -21,6 +21,7 @@
             cloudflared tunnel route dns "{{ tunnel_id }}" erau03
             cloudflared tunnel route dns "{{ tunnel_id }}" erau02
             cloudflared tunnel route dns "{{ tunnel_id }}" erau01
+            cloudflared tunnel route dns "{{ tunnel_id }}" erau
       rescue:
         - name: Print when errors
           ansible.builtin.debug:
