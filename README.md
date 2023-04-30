@@ -3,8 +3,8 @@
 ### Status ..
 [![run-tests](../../actions/workflows/python-test.yml/badge.svg)](../../actions/workflows/python-test.yml)
 [![docker-publish](../../actions/workflows/docker-publish.yml/badge.svg)](../../actions/workflows/docker-publish.yml)
-![Website](https://img.shields.io/website?down_color=red&down_message=offline&style=plastic&up_color=green&up_message=online&url=https://img.shields.io/website/https/erau99.techcasitaproductions.com.health.svg)
-![Webservice](https://img.shields.io/endpoint?color=blue&label=erau99&style=plastic&url=https%3A%2F%2Ferau99.techcasitaproductions.com%2F%3Fnumber%3D1)
+![Website](https://img.shields.io/website?down_color=red&down_message=offline&style=plastic&up_color=green&up_message=online&url=https://img.shields.io/website/https/erau.techcasitaproductions.com.health.svg)
+![Webservice](https://img.shields.io/endpoint?color=blue&label=erau&style=plastic&url=https%3A%2F%2Ferau.techcasitaproductions.com%2F%3Fnumber%3D1)
 
 ![Discord](https://img.shields.io/discord/1095027977206644778?style=plastic)
 

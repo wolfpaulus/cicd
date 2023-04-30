@@ -7,7 +7,6 @@
       block:
         - name: Create CNAMES for the tunnel. # put newest first
           shell: |
-            cloudflared tunnel route dns "{{ tunnel_id }}" erau99
             cloudflared tunnel route dns "{{ tunnel_id }}" erau13
             cloudflared tunnel route dns "{{ tunnel_id }}" erau12
             cloudflared tunnel route dns "{{ tunnel_id }}" erau11
