@@ -18,7 +18,7 @@
     "project": "Odd/Even Checker",
     "github": "https://github.com/teaganlaws/cicd",
     "docker": "https://github.com/teaganlaws/cicd/pkgs/container/cicd",
-    "server": "https://erau11.techcasitaproductions.com/"
+    "server": ""
   },
   {
     "name": "Jaxson Mitchell",
@@ -78,7 +78,7 @@
   },
   {
     "name": "Jordan Wallschlaeger",
-    "project": "Odd/Even Checker",
+    "project": "Divisible by 7 Checker",
     "github": "https://github.com/jordantw2014/cicd",
     "docker": "https://github.com/jordantw2014/cicd/pkgs/container/cicd",
     "server": "https://erau07.techcasitaproductions.com/"

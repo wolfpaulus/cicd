@@ -27,7 +27,18 @@ class MyServer(BaseHTTPRequestHandler):
             number = self.path.split("=")[1] if self.path.startswith("/?number=") else ""
             result = f"{number} is {'odd' if is_odd(int(number)) else 'even'}." if number.isnumeric() else ""
             if self.headers.get('Accept') == 'application/json':
-               pass
+                if number.isnumeric():
+                    d = {
+                        "number": int(number),
+                        "odd": is_odd(int(number)),
+                        "schemaVersion": 1,  # this and following fields are optional (for shield.io stuff)
+                        "label": "erau",
+                        "message": f"odd/even Web-service",
+                        "color": "blue"
+                    }
+                    status, content, content_type = 200, dumps(d), "application/json"
+                else:
+                    status, content, content_type = 400, '{"status" : "Bad Request"}', "application/json"
             else:
                 with open('./src/response.html', 'r') as f:
                     # read the html template and fill in the parameters: path, time and result
