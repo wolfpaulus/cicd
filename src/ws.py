@@ -30,11 +30,7 @@ class MyServer(BaseHTTPRequestHandler):
                 if number.isnumeric():
                     d = {
                         "number": int(number),
-                        "odd": is_odd(int(number)),
-                        "schemaVersion": 1,  # this and following fields are optional (for shield.io stuff)
-                        "label": "erau",
-                        "message": f"odd/even Web-service",
-                        "color": "blue"
+                        "odd": is_odd(int(number))
                     }
                     status, content, content_type = 200, dumps(d), "application/json"
                 else:

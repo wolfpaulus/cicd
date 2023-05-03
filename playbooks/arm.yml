@@ -1,0 +1,47 @@
+# Install ARM ansible-playbook -i ./hosts.yaml ./arm.yml
+- hosts: alpha
+  become: "yes"
+  tasks:
+    - name: Install packages
+      apt:
+        name:
+          - lsscsi
+        state: present
+
+    - name: Creates mount point
+      file:
+        path: /mnt/sr0
+        state: directory
+
+    - name: Mount DVD read-only
+      ansible.posix.mount:
+        path: /mnt/sr0
+        src: /dev/sr0
+        fstype: iso9660
+        opts: ro,noauto
+        state: mounted
+
+    - name: Install ARM
+      docker_container:
+        name: arm-rippers
+        image: ghcr.io/automatic-ripping-machine/automatic-ripping-machine:shitwolfymakes-patch-1
+        labels:
+          com.centurylinklabs.watchtower.enable: "false"
+        state: started
+        restart_policy: unless-stopped
+        env:
+          ARM_UID: "1000"
+          ARM_GID: "1000"
+        volumes:
+          - /etc/localtime:/etc/localtime:ro
+          - /etc/timezone:/etc/timezone:ro
+          - /home/wolf/arm:/home/arm
+          - /home/wolf/arm:/home/arm/Music
+          - /home/wolf/arm:/home/arm/logs
+          - /home/wolf/arm:/home/arm/media
+          - /home/wolf/arm:/etc/arm/config
+        published_ports:
+          - "7000:8080"
+        devices:
+          - "/dev/sr0:/dev/sr0"
+        privileged: true
